@@ -59,4 +59,14 @@ function login_close(){
     document.getElementById("_loginFrame").innerHTML = '<p id="_loginFrame"></p>';
     location.reload();
 }
+function re(){
+    var reFrame = '<div id="reFrame">\
+    <p>&nbsp;&nbsp;注册</p>\
+    <p>&nbsp;&nbsp;用户名：<input type="text" id="re_name" /></p>\
+    <p>&nbsp;&nbsp;密码： &nbsp;&nbsp;<input type="password" id="re_password" /></p>\
+    <p>&nbsp;&nbsp;确认密码：<input type="password" id="re_password2" /></p>\
+    <button id="re_ok" onClick="re_s()">确定</button>\
+    <button id="re_no" onClick="re_close()">退出</button>\
+    </div>'
+}
 
