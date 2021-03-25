@@ -24,7 +24,7 @@
     height: 500px;
     word-wrap: break-word;
 }
-#loginFrame{
+#loginFrame , #reFrame{
     width: 300px;
     height: 170px;
     background-color: #ffffff;
@@ -35,13 +35,13 @@
     right: 0;
     margin: 0 auto;
 }
-#loginFrame p input{
+#loginFrame p input , #reFrame p input{
     height: 20px;
     outline-style: none;
     border: 1px solid #999999;
     border-radius: 3px; 
 }
-#loginFrame button{
+#loginFrame button , #reFrame button{
     border-radius: 15px;
     background-color: rgb(255,255,255);
     border: .5mm solid rgb(126, 126, 126);

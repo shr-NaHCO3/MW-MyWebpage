@@ -67,7 +67,7 @@ header span ul li p{
     float:right;
 }
 
-#loginbutton{
+#loginbutton , #rebutton{
     /*display: block;*/
     float: right;
     margin-right: 15px;
@@ -79,7 +79,7 @@ header span ul li p{
     border: .5mm solid rgb(126, 126, 126);
     /*border: 1px solid transparent;*/
 }
-#loginbutton:hover {
+#loginbutton:hover , #rebutton:hover{
     box-shadow: 0 5px 7px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     color:rgb(255,255,255);
     border: .5mm solid rgb(0, 145, 212);

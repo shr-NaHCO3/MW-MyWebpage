@@ -67,6 +67,8 @@ function re(){
     <p>&nbsp;&nbsp;确认密码：<input type="password" id="re_password2" /></p>\
     <button id="re_ok" onClick="re_s()">确定</button>\
     <button id="re_no" onClick="re_close()">退出</button>\
-    </div>'
+    </div>';
+    document.getElementById("_reFrame").innerHTML = reFrame;
+
 }
 
