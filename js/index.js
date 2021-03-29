@@ -65,10 +65,41 @@ function re(){
     <p>&nbsp;&nbsp;用户名：<input type="text" id="re_name" /></p>\
     <p>&nbsp;&nbsp;密码： &nbsp;&nbsp;<input type="password" id="re_password" /></p>\
     <p>&nbsp;&nbsp;确认密码：<input type="password" id="re_password2" /></p>\
+    <p id="re_ts" style="color:green;">注册</p>\
     <button id="re_ok" onClick="re_s()">确定</button>\
     <button id="re_no" onClick="re_close()">退出</button>\
     </div>';
     document.getElementById("_reFrame").innerHTML = reFrame;
+}
+function re_s(){
+    var newUserName = document.getElementById("re_name").value;
+    var newUserLock = document.getElementById("re_password").value;
+    var doubleLock  = document.getElementById("re_password2").value;
 
+    var keys = 0;
+    var isdoubleName = false;
+
+    if(newUserName == ""){
+        document.getElementById("re_ts").innerHTML = '<p id="re_ts" style="color:red;">用户名不能为空！</p>';
+        return ;
+    }
+
+    document.getElementById("re_ts").innerHTML = '<p id="re_ts" style="color:red;">加载中</p>'
+    for(var i=0;i<localStorage.length;i++){
+        keys = localStorage.key(i);
+        if(keys == newUserName){
+            isdoubleName = true;
+            break;
+        } 
+    }
+    if(isdoubleName){
+        document.getElementById("re_ts").innerHTML = '<p id="re_ts" style="color:red;">用户已存在！</p>'
+    }else{
+        console.log("y")
+    }
+}
+function re_close(){
+    document.getElementById("_reFrame").innerHTML = '<p id="_reFrame"></p>';
+    location.reload();
 }
 
