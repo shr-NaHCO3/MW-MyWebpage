@@ -2,8 +2,9 @@ window.onload = function(){
     if(localStorage.getItem("#islogin#*") != null){
         if(JSON.parse(localStorage.getItem("#islogin#*"))["islogin"]){
             var name = JSON.parse(localStorage.getItem("#islogin#*"))["name"]
-            if(name == "#admin#*")document.getElementById("login").innerHTML = '<p id="username" style="color: purple;margin-top: 5px;margin-left: -90px;font-size: 20px">'+"管理员"+'</p>';
-            else document.getElementById("login").innerHTML = '<p id="username" style="color: #000000">'+name+'</p>';
+            if(name == "#admin#*")document.getElementById("login").innerHTML = '<li id="username">'+"<p>管理员</p>"+'</li>';
+            else document.getElementById("login").innerHTML = '<li id="username"><p>'+name+'</p><ul><li><button onClick="unLogin()">登出</button></li></ul></li>';
+            document.getElementById("re").innerHTML = '<p></p>'
         }
     }
 }
@@ -37,7 +38,7 @@ function login_s(){
     if(!(localStorage.getItem(localStorage.key(name)))){
         alert("用户不存在！")
     }else{
-        if(JSON.parse(localStorage.getItem(localStorage.key(name)))["password"] == pw){
+        if(JSON.parse(localStorage.getItem(name))["password"] == pw){
             alert("welcome!");
             document.getElementById("loginFrame").innerHTML = '<p id="_loginFrame"></p>';
             
@@ -113,3 +114,11 @@ function re_s(){
     ts.innerHTML = '<p id="re_ts" style="color:green;">注册成功！</p>';
 }
 
+function unLogin(){
+    var obj={
+        islogin:false,
+        name:""
+    }
+    localStorage.setItem("#islogin#*",JSON.stringify(obj));
+    location.reload();
+}
