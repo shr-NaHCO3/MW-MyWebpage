@@ -12,6 +12,9 @@ header{
 header span ul li a{
     text-decoration:none;
 }
+header>span>ul>li a{
+    color :#000000;
+}
 header span ul{
     list-style-type: none;/* 清除ul标签的默认样式*/
     display: block;
@@ -66,7 +69,18 @@ header span ul li p{
     color:#ffffff;
     float:right;
 }
+header span ul li ul button{
+    border: 0 solid #000000;
+    background-color: rgb(0, 175, 255);
+    width: 128px;
+    height: 76px;
+    font-size: 16px;
+}
 
+
+header span ul li ul button:hover{
+    background-color: rgb(0, 145,212);
+}
 #loginbutton , #rebutton{
     /*display: block;*/
     float: right;
@@ -84,4 +98,40 @@ header span ul li p{
     color:rgb(255,255,255);
     border: .5mm solid rgb(0, 145, 212);
     background-color: rgb(0, 175, 255);
+}
+
+#loginFrame{
+    width: 300px;
+    height: 170px;
+    background-color: #ffffff;
+    border: 2px solid #999999;
+    border-radius: 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+#reFrame{
+    width: 300px;
+    height: 250px;
+    background-color: #ffffff;
+    border: 2px solid #999999;
+    border-radius: 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+#loginFrame p input , #reFrame p input{
+    height: 20px;
+    outline-style: none;
+    border: 1px solid #999999;
+    border-radius: 3px; 
+}
+#loginFrame button , #reFrame button{
+    border-radius: 15px;
+    background-color: rgb(255,255,255);
+    border: .5mm solid rgb(126, 126, 126);
+    float: right;
+    margin-right:10px;
 }
