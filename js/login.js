@@ -1,15 +1,56 @@
+/**********
+some thongs in localStorages:
+1.#admin#*:
+	admin
+	can change users informations
+	
+2.#islogin#*:
+	who is login and its name.
+
+**********/
+
 window.onload = function(){
     if(localStorage.getItem("#islogin#*") != null){
         if(JSON.parse(localStorage.getItem("#islogin#*"))["islogin"]){
-            var name = JSON.parse(localStorage.getItem("#islogin#*"))["name"]
-            if(name == "#admin#*")document.getElementById("login").innerHTML = '<li id="username">'+"<p>管理员</p>"+'</li>';
-            else document.getElementById("login").innerHTML = '<li id="username"><p>'+name+'</p><ul><li><button onClick="unLogin()">登出</button></li></ul></li>';
+            var name = JSON.parse(localStorage.getItem("#islogin#*"))["name"];
+			var usersFramePrefix = "信誉"; //信誉值前缀
+			var usersFrame = '<li id="username">\
+				<p>'+name+'</p>\
+				<ul>\
+					<li>\
+						<p id="prestige" style="font-size:17px">信誉:0</p>\
+					</li>\
+					<li>\
+						<button onClick="unLogin()">登出</button>\
+					</li>\
+				</ul>\
+			</li>' //用户操作框架
+			var adminFrame = '<li id="username">\
+				<p>'+name+'</p>\
+				<ul>\
+					<li>\
+						<p id="prestige">信誉:32767</p>\
+					</li>\
+					<li>\
+						<button onClick="unLogin()">登出</button>\
+					</li>\
+				</ul>\
+			</li>' //admin操作框架
+			
+            if(name == "#admin#*"){
+				document.getElementById("login").innerHTML = adminFrame;
+			}
+            else{
+				var userPrestidge = JSON.parse(localStorage.getItem("#islogin#*"))["prestige"]
+				document.getElementById("login").innerHTML = usersFrame;
+				document.getElementById("prestige").innerText = usersFramePrefix + " : " + userPrestidge
+			}
             document.getElementById("re").innerHTML = '<p></p>'
         }
     }
 }
 
-function login(){
+function login(){//login frame
     var loginFrame='<div id="loginFrame">\
     <p>&nbsp;&nbsp;Welcome | 欢迎</p>\
     <p>&nbsp;&nbsp;用户名：<input type="text" id="login_name" /></p>\
@@ -27,12 +68,13 @@ function login(){
     if(localStorage.getItem(localStorage.key("#islogin#*")) == null){
         var obj={
             islogin:false,
-            name:""
+            name:"",
+			prestige:null
         }
         localStorage.setItem("#islogin#*",JSON.stringify(obj));
     }
 }
-function login_s(){
+function login_s(){ //login frame
     var name = document.getElementById("login_name").value;
     var pw = document.getElementById("login_password").value;
     if(!(localStorage.getItem(localStorage.key(name)))){
@@ -44,11 +86,17 @@ function login_s(){
             
             if(name == "#admin#*")document.getElementById("login").innerHTML = '<p id="username" style="color: purple">'+"管理员"+'</p>';
             else document.getElementById("login").innerHTML = '<p id="username" style="color: #000000">'+name+'</p>';
-
+			
+			var prestige = JSON.parse(localStorage.getItem(name))["prestige"]
+			
+			//////////////////////////////////////////
             var obj={
                 islogin:true,
-                name:name
+                name:name,
+				prestige:prestige
             }
+			//////////////////////////////////////////
+			
             localStorage.setItem("#islogin#*",JSON.stringify(obj));
             location.reload();
         }else{
@@ -56,9 +104,9 @@ function login_s(){
         }
     }
 }
-function login_close(){
+function login_close(){ //close the login frame
     document.getElementById("_loginFrame").innerHTML = '<p id="_loginFrame"></p>';
-    location.reload();
+    location.reload();//刷新
 }
 
 function re(){
@@ -73,11 +121,11 @@ function re(){
     </div>';
     document.getElementById("_reFrame").innerHTML = reFrame;
 }
-function re_close(){
+function re_close(){ //close the reload frame
     document.getElementById("_reFrame").innerHTML = '<p id="_reFrame"></p>';
-    location.reload();
+    location.reload(); //刷新
 }
-function re_s(){
+function re_s(){ //注册
     var newUserName = document.getElementById("re_name").value;
     var newUserLock = document.getElementById("re_password").value;
     var newUserDoubleLock = document.getElementById("re_password2").value;
@@ -107,14 +155,19 @@ function re_s(){
         return ;
     }
     ts.innerHTML = '<p id="re_ts" style="color:green;">正在注册...</p>';
+	
+	//////////////////////////////////////////
     var obj = {
-        "password":newUserLock
+        "password":newUserLock,
+		"prestige":0 //声望
     }
+	//////////////////////////////////////////
+	
     localStorage.setItem(newUserName,JSON.stringify(obj));
     ts.innerHTML = '<p id="re_ts" style="color:green;">注册成功！</p>';
 }
 
-function unLogin(){
+function unLogin(){ //登出
     var obj={
         islogin:false,
         name:""
