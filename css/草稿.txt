@@ -1,0 +1,4 @@
+加密：
+window.btoa(string);
+解密 ：
+window.atob(string);
